@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Go Uptown</title>
+</head>
+<body>
+
+</body>
+<script src="assets/js/band-members.js"></script>
+<script>
+  // Grab the URL parameters, looking for the member parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const member = urlParams.get('member');
+    console.log(bandMembers[member - 1].description);
+</script>
+</html>
