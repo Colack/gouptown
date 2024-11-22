@@ -5,13 +5,44 @@
   <title>Go Uptown</title>
 </head>
 <body>
-
+  <div class="band-member">
+    <div class="band-member__image">
+      <img src="" alt="Band Member Image">
+    </div>
+    <h2 class="band-member__name">Band Member Name | Instrument</h2>
+    <p class="band-member__bio">Band Member Bio</p>
+  </div>
 </body>
 <script src="assets/js/band-members.js"></script>
 <script>
-  // Grab the URL parameters, looking for the member parameter
+    window.onload = function() {
+        if (!window.location.search) {
+            const bandMember = document.querySelector('.band-member');
+            bandMember.style.display = 'none';
+
+            window.location.href = 'index.html';
+        }
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const member = urlParams.get('member');
-    console.log(bandMembers[member - 1].description);
+
+    if (member) {
+      document.title = 'Go Uptown | Band Member ' + member;
+
+      const memberData = bandMembers[member - 1];
+      const bandMember = document.querySelector('.band-member');
+
+      const bandMemberImage = bandMember.querySelector('.band-member__image img');
+      bandMemberImage.src = memberData.image;
+
+      const bandMemberName = bandMember.querySelector('.band-member__name');
+      bandMemberName.textContent = memberData.name + ' | ' + memberData.instrument;
+
+      bandMemberName.style.color = memberData.favoriteColor;
+
+      const bandMemberBio = bandMember.querySelector('.band-member__bio');
+      bandMemberBio.textContent = memberData.description;
+    }
 </script>
 </html>
